@@ -6,37 +6,55 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- l'intéret de TypeScript dans l'IDE ❌ / ✔️
-- les types de bases ❌ / ✔️
-- comment et pourquoi étendre une interface ❌ / ✔️
+- l'intéret de TypeScript dans l'IDE ✔️
+- les types de bases ✔️
+- comment et pourquoi étendre une interface ✔️
 - les classes et les decorators ❌ / ✔️
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
-### Utilisation dans un projet ❌ / ✔️
+```javascript
+// Fonction qui renvoie une cellule de mon Tic Tac Toe
+const Cell = ({ player, index, onClick, cellClassName }: CellProps) => { // Attribution des props à l'interface en dessous
+  return (
+    <div className={cellClassName[index]} data-cell-index={index} {...{ onClick }}>
+      <span data-cell-index={index}>{player}</span>
+    </div>
+  );
+};
 
-[lien github](...)
+interface CellProps = {
+  player?: string, // On utilise "?" pour permettre de rendre Player optionnel, mais sinon ce sera un string
+  cellClassName: Array<string>, // cellClassName est un tableau de string
+  onClick(e: React.MouseEvent): void, // onClick sera une fonction qui reçevra un MouseEvent et qui ne renverra rien
+  index: number, // Index est un number
+};
+```
 
-Description :
+### Utilisation dans un projet ✔️
 
-### Utilisation en production si applicable❌ / ✔️
+[lien github] https://github.com/Samy-Belarbi/tictactoe
 
-[lien du projet](...)
+Description : Simple Tic Tac Toe w/ ReactJs, ViteJs & TypeScript.
 
-Description :
+### Utilisation en production si applicable ✔️
 
-### Utilisation en environement professionnel ❌ / ✔️
+[lien du projet] https://tic-tac-toe-lemon-pi.vercel.app/
 
-Description :
+Description : Simple Tic Tac Toe w/ ReactJs, ViteJs & TypeScript.
+
+### Utilisation en environement professionnel ✔️
+
+Description : Gestion du typage du front via React d'une appli.
 
 ## 🌐 J'utilise des ressources
 
 ### Titre
 
-- lien
-- description
+- https://www.totaltypescript.com/
+- Training TS
 
 ## 🚧 Je franchis les obstacles
 

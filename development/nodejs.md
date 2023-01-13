@@ -6,26 +6,41 @@
 
 ## 🎓 J'ai compris et je peux expliquer
 
-- Comment développer en utilisant un système de *livereloading* (`nodemon` par exemple) ❌ / ✔️
-- La connexion de mon application à une base de données avec et sans ORM/ODM (avec `mongodb` puis `mongoose` par exemple) ❌ / ✔️
+- Comment développer en utilisant un système de _livereloading_ (`nodemon` par exemple) ✔️
+- La connexion de mon application à une base de données avec et sans ORM/ODM (avec `mongodb` puis `mongoose` par exemple) ✔️
 - Le développement d'une API REST et GraphQL (avec les packages `express` et `graphql` par exemple) ❌ / ✔️
-- *Bonus : la manipulation des fichiers système avec `fs` et l'utilisation des streams en NodeJS* ❌ / ✔️
+- _Bonus : la manipulation des fichiers système avec `fs` et l'utilisation des streams en NodeJS_ ❌ / ✔️
 
 ## 💻 J'utilise
 
-### Un exemple personnel commenté ❌ / ✔️
+### Un exemple personnel commenté ✔️
 
 ```javascript
-// this function takes a path to a .md file of the host system and write the HTML version of this file
-// the .html file is given back
-const convertMDFileToHTML = (pathToMDfile) => /* ... path to HTML file */
+// Fs permet de créer et lire des fichiers via Node
+const fs = require("fs"); // File System
+
+module.exports = async (bot) => {
+  fs.readdirSync("./Commands") // On lui donne le le dossier où il va venir lire les fichiers
+    .filter((f) => f.endsWith(".js")) // On vérifie bien qu'on lui donne que les fichiers JS
+    .forEach(async (file) => {
+      const command = require(`../Commands/${file}`); // On importe le fichier de la commande
+
+      if (!command.name || typeof command.name !== "string") {
+        throw new TypeError(`La commande ${file.slice(0, file.length - 3)} n'a pas de nom !`);
+      } // On vérifie bien que la commande a un nom, sinon on envoie une erreur (en enlevant le ".js" du file);
+
+      bot.commands.set(command.name, command); // On rajoute la commande au bot
+
+      console.log(`Commande ${file} chargée avec succès !`);
+    });
+};
 ```
 
-### Utilisation dans un projet ❌ / ✔️
+### Utilisation dans un projet ✔️
 
-[lien github](...)
+[lien github] https://github.com/Samy-Belarbi/bot-discord
 
-Description :
+Description : Bot Discord qui permet d'envoyer un lien via la commande !meet
 
 ### Utilisation en production si applicable❌ / ✔️
 
